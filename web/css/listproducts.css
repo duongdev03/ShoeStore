@@ -1,0 +1,156 @@
+a{
+    text-decoration: none;
+    color:#FAFAFA;
+}
+
+.btn-add{
+    margin-top: 20px;
+    margin-bottom: 10px;
+    padding: 8px;
+}
+
+.btn-edit:hover,
+.btn-delete:hover,
+.btn-add:hover{
+    color:#FAFAFA;
+    transform: scale(1.1);
+}
+.btn-edit:hover a,
+.btn-delete:hover a,
+.btn-add:hover a{
+    color:#FAFAFA;
+}
+
+.btn-edit{
+    background-color: chocolate;
+}
+
+.btn-delete{
+    background-color: red;
+}
+
+.btn-eye{
+    background-color: #149D4F;
+}
+
+.btn-eye:hover{
+    color:#FAFAFA;
+    transform: scale(1.1);
+}
+
+.btn-eye:hover a{
+    color:#FAFAFA;
+}
+.modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: none;
+}
+
+.modal-container {
+    background: #fff;
+    width: 900px;
+    max-width: calc(100% - 32px);
+    min-height: 300px;
+    max-height: 600px;
+    position: relative;
+    animation: modalFadeIn ease 0.5s;
+    overflow: scroll;
+}
+
+.modal-header {
+    color: #fff;
+    font-size: 30px;
+    font-weight: 400;
+    background: #009688;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-heading-icon {
+    margin-right: 16px;
+}
+
+.modal-close {
+    position: absolute;
+    right:0;
+    color:#fff;
+    padding: 16px;
+}
+
+.modal-close:hover {
+    background-color: red;
+    color: #FAFAFA;
+    cursor: pointer;
+}
+
+.modal-body {
+    padding:20px;
+}
+
+.modal-input {
+    width:97%;
+    padding:10px;
+    border:1px solid #ccc;
+    margin-bottom: 15px;
+}
+
+.modal-lable {
+    display:block;
+    font-size: 15px;
+    margin-bottom: 8px;
+}
+
+.container-form-check{
+    display: flex;
+    gap:20px;
+}
+
+.modal-select{
+    width:100%;
+    padding:10px;
+    border:1px solid #ccc;
+    margin-bottom: 20px;
+}
+
+.btn-add-doctor{
+    width:100%;
+    font-size: 15px;
+    text-transform: uppercase;
+    color:#fff;
+    background-color: #0176C3;
+    padding:15px;
+    border:none;
+    border-radius: 20px;
+}
+
+.btn-add-doctor:hover{
+    cursor: pointer;
+    background-color: blue;
+}
+
+@keyframes modalFadeIn {
+    from{
+        opacity: 0;
+        transform: translateY(-140px);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.open {
+    display: flex;
+}
+
+
