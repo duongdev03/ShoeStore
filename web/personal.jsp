@@ -14,60 +14,123 @@
         crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
         <link rel="stylesheet" href="./css/homepage.css">
+        <link rel="stylesheet" href="./css/personal.css">
         <title>Shop</title>
     </head>
     <body>
 
         <section id="header">
-            <a href="#"><img src="logo/logo.png" class="logo" alt=""></a>
+            <a href="#"><img src="logo/LogoStore.png" class="logo" alt=""></a>
 
             <div>
                 <ul id="navbar">
-                    <li><a href="homepage.jsp">Home</a></li>
-                    <li><a class="active" href="shop">Shop</a></li>
-                    <c:if test="${sessionScope.acc != null}">
-                    <li><a href="#">Hello ${sessionScope.acc.username}</a></li>
-                    <li><a href="logout">Logout</a></li>
-                    </c:if>
-                    <c:if test="${sessionScope.acc == null}">
-                    <li><a href="login">Login</a></li>
-                    </c:if>
+                    <li><a href="shop">Trang chủ</a></li>
+                        <c:if test="${sessionScope.acc != null}">
+                        <li><a href="#">${sessionScope.acc.username}</a></li>
+                        <li><a href="logout">Đăng xuất</a></li>
+                        </c:if>
+                        <c:if test="${sessionScope.acc == null}">
+                        <li><a href="login">Đăng nhập</a></li>
+                        </c:if>
                     <li id="lg-bag"><a href="cart"><i class="bi bi-cart4"></i></a></li>
-                    <a href="#" id="close"><i class="bi bi-x-lg"></i></a>
                 </ul>
             </div>
-            <div id="mobile">
-                <a href="cart"><i class="bi bi-cart4"></i></a>
-                <i id="bar" class="class=bi bi-list"></i>
-            </div>
         </section>
-        
+
         <div class="container">
-            <div class="title">
-                Đơn hàng của bạn
-            </div>
-            
+
             <div class="content-box">
-                <div class="product-infor">
-                    <div class="product-img">
-                        <<img src="src" alt="alt"/>
-                    </div>
-                    
-                    <div class="product-content">
-                        <p>tên sản phẩm</p>
-                        <p>size: 40</p>
-                        <p>số lượng: 1</p>
-                    </div>
+                <div class="title">
+                    Đơn hàng của bạn
                 </div>
-                
-                <div class="invoice-status">
-                    
-                </div>
+                <c:forEach var="order" items="${userOrders}">
+                    <div class="product-infor">
+                        <div class="product-img">
+                            <img src="./shoesImg/${order.image_url}" alt="Ảnh sản phẩm" />
+                        </div>
+            
+                        <div class="product-content">
+                            <p>${order.productName}</p>
+                            <p>size: ${order.size}, số lượng: ${order.quantity}</p>
+            
+                            <div class="invoice-status">
+                                <div class="status">
+                                    <span style="opacity: 0.7;">Trạng thái: </span>${order.status}
+                                </div>
+            
+                                <c:if test="${order.status eq 'Hủy' || order.status eq 'Đã giao'}">
+                                    <form action="reOrder" method="post">
+                                        <input type="hidden" name="orderId" value="${order.orderId}" />
+                                        <button type="submit" class="re-order">Mua lại</button>
+                                    </form>
+                                </c:if>
+                                <c:if test="${order.status ne 'Hủy' && order.status ne 'Đã giao'}">
+                                    <form action="cancelOrder" method="post">
+                                        <input type="hidden" name="orderId" value="${order.orderId}" />
+                                        <button type="submit" class="cancel-order">Hủy</button>
+                                    </form>
+                                </c:if>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </c:forEach>
+            
+                <c:if test="${empty userOrders}">
+                    <p>Bạn chưa có đơn hàng nào.</p>
+                </c:if>
             </div>
         </div>
 
+        <footer class="section-p1">
+            <div class="col">
+                <img src="logo/LogoStore.png" class="logo" alt="">
+                <h4>Liên hệ</h4>
+                <p><strong>địa chỉ: </strong> Trinh Van Bo Street, Nam Tu Liem District, Hanoi City</p>
+                <p><strong>điện thoại: </strong> 024 3555 2008</p>
+                <p><strong>giờ làm việc: </strong> 7:00 - 21:00, thứ 2 - chủ nhật</p>
+                <div class="follow">
+                    <h4>Theo dõi chúng tôi</h4>
+                    <div class="icon">
+                        <i class="bi bi-facebook"></i>
+                        <i class="bi bi-messenger"></i>
+                        <i class="bi bi-instagram"></i>
+                        <i class="bi bi-tiktok"></i>
+                        <i class="bi bi-youtube"></i>
+                    </div>
+                </div>
+            </div>
 
-        <script src="main.js"></script>
+            <div class="col">
+                <h4>điều khoản</h4>
+                <a href="#">Về chúng tôi</a>
+                <a href="#">Thông tin giao hàng</a>
+                <a href="#">Chính sách bảo mật</a>
+                <a href="#">Điều khoản & Điều kiện</a>
+                <a href="#">Liên hệ với chúng tôi</a>
+            </div>
+
+            <div class="col">
+                <h4>Tài khoản của tôi</h4>
+                <a href="#">Đăng nhập</a>
+                <a href="#">Xem giỏ hàng</a>
+                <a href="#">Danh sách mong muốn của tôi</a>
+                <a href="#">Theo dõi đơn hàng của tôi</a>
+                <a href="#">Trợ giúp</a>
+            </div>
+
+            <div class="col install">
+                <h4>Cài đặt ứng dụng</h4>
+                <p>Từ App Store hoặc Google Play</p>
+                <div class="row">
+                    <img src="pay/app.png" alt="">
+                    <img src="pay/ggplay.png" alt="">
+                </div>
+            </div>
+
+        </footer>
+
+        <script src="./js/main.js"></script>
     </body>
 </html>
 

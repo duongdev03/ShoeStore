@@ -1,3 +1,9 @@
+<%
+    if (session.getAttribute("acc") == null) {
+        response.sendRedirect("login");
+        return;
+    }
+%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -17,44 +23,34 @@
     </head>
     <body>
         <section id="header">
-            <a href="#"><img src="logo/logo.png" class="logo" alt=""></a>
+            <a href="#"><img src="logo/LogoStore.png" class="logo" alt=""></a>
 
             <div>
                 <ul id="navbar">
-                    <li><a href="homepage.jsp">Home</a></li>
-                    <li><a class="active" href="shop">Shop</a></li>
+                    <li><a href="shop">Trang chủ</a></li>
                         <c:if test="${sessionScope.acc != null}">
-                        <li><a href="#">Hello ${sessionScope.acc.username}</a></li>
-                        <li><a href="logout">Logout</a></li>
+                        <li><a href="personal">${sessionScope.acc.username}</a></li>
+                        <li><a href="logout">Đăng xuất</a></li>
                         </c:if>
                         <c:if test="${sessionScope.acc == null}">
-                        <li><a href="login">Login</a></li>
+                        <li><a href="login">Đăng nhập</a></li>
                         </c:if>
                     <li id="lg-bag"><a href="cart"><i class="bi bi-cart4"></i></a></li>
-                    <a href="#" id="close"><i class="bi bi-x-lg"></i></a>
                 </ul>
             </div>
-            <div id="mobile">
-                <a href="cart"><i class="bi bi-cart4"></i></a>
-                <i id="bar" class="class=bi bi-list"></i>
-            </div>
-        </section>
-        <section id="page-header" class="about-header">
-            <h2>CART</h2>
         </section>
 
         <section id="cart" class="section-p1">
             <table width="100%">
                 <thead>
                     <tr>
-                        <td>Remove</td>
-                        <td>Image</td>
-                        <td>Product</td>
+                        <td>xóa</td>
+                        <td>ảnh</td>
+                        <td>Sản phẩm</td>
                         <td>Size</td>
-                        <td>Price</td>
-                        <td>Quantity</td>
-                        <td>Subtotal</td>
-                        <td>payment method</td>
+                        <td>Giá tiền</td>
+                        <td>Số lượng</td>
+                        <td>Tổng tiền</td>
                     </tr>
                 </thead>
                 <tbody>
@@ -67,7 +63,6 @@
                             <td><fmt:formatNumber type="currency" currencyCode="VND" value="${param.price}" /></td>
                             <td><input type="number" value="${param.quantity}"></td>
                             <td><fmt:formatNumber type="currency" currencyCode="VND" value="${param.price * param.quantity}" /></td>
-                            <td>${param.payment_method}</td>
                         </tr>
                     </c:if>
                 </tbody>
@@ -76,26 +71,26 @@
 
         <section id="cart-add" class="section-p1">
             <div id="coupon">
-                <h3>Apply Coupon</h3>
+                <h3>Áp dụng phiếu giảm giá</h3>
                 <div>
-                    <input type="text" placeholder="Enter Your Coupon">
-                    <button class="normal">Apply</button>
+                    <input type="text" placeholder="Nhập mã giảm giá của bạn">
+                    <button class="normal">Áp dụng</button>
                 </div>
             </div>
 
             <div id="subtotal">
-                <h3>Cart Totals</h3>
+                <h3>Tổng tiền</h3>
                 <table>
                     <tr>
-                        <td>Cart Subtotal</td>
+                        <td>Tổng tiền đơn hàng</td>
                         <td><fmt:formatNumber type="currency" currencyCode="VND" value="${param.price * param.quantity}" /></td>
                     </tr>
                     <tr>
-                        <td>Shipping</td>
-                        <td>Free</td>
+                        <td>Vận chuyển</td>
+                        <td>Miễn phí</td>
                     </tr>
                     <tr>
-                        <td><strong>Total</strong></td>
+                        <td><strong>Phải thanh toán</strong></td>
                         <td><strong><fmt:formatNumber type="currency" currencyCode="VND" value="${param.price * param.quantity}" /></strong></td>
                     </tr>
                 </table>
@@ -107,9 +102,8 @@
                     <input type="hidden" name="price" value="${param.price}">
                     <input type="hidden" name="quantity" value="${param.quantity}">
                     <input type="hidden" name="subtotal" value="${param.price * param.quantity}">
-                    <input type="hidden" name="payment_method" value="${param.payment_method}">
                     <input type="hidden" name="product_size_id" value="${param.product_size_id}">
-                    <button type="submit" class="normal btn-proceed">Proceed to Payment</button>
+                    <button type="submit" class="normal btn-proceed">Thanh toán</button>
                 </form>
 
             </div>
@@ -117,24 +111,25 @@
 
         <section id="newsletter" class="section-p1 section-m1">
             <div class="newtext">
-                <h4>Sign Up For Newsletters</h4>
-                <p>Get E-mail updates about our latest shop and <span>special offers.</span> </p>
+                <h4>Đăng ký nhận bản tin</h4>
+                <p>Nhận email cập nhật mới nhất về cửa hàng và <span>các ưu đãi đặc biệt của chúng tôi.</span> </p>
             </div>
             <div class="form">
-                <input type="text" placeholder="Your email address">
-                <button class="normal">Sign Up</button>
+                <input type="text" placeholder="Địa chỉ Email của bạn">
+                <button class="normal">Đăng ký</button>
             </div>
         </section>
-        <!-- Include footer and scripts here -->
+
+
         <footer class="section-p1">
             <div class="col">
-                <img class="logo" src="logo/logo.png" alt="">
-                <h4>Contact</h4>
-                <p><strong>Address: </strong> Trinh Van Bo Street, Nam Tu Liem District, Hanoi City</p>
-                <p><strong>Phone: </strong> 024 3555 2008</p>
-                <p><strong>Hours: </strong> 7:00 - 18:00, Mon - Sat</p>
+                <img src="logo/LogoStore.png" class="logo" alt="">
+                <h4>Liên hệ</h4>
+                <p><strong>địa chỉ: </strong> Trinh Van Bo Street, Nam Tu Liem District, Hanoi City</p>
+                <p><strong>điện thoại: </strong> 024 3555 2008</p>
+                <p><strong>giờ làm việc: </strong> 7:00 - 21:00, thứ 2 - chủ nhật</p>
                 <div class="follow">
-                    <h4>Follow us</h4>
+                    <h4>Theo dõi chúng tôi</h4>
                     <div class="icon">
                         <i class="bi bi-facebook"></i>
                         <i class="bi bi-messenger"></i>
@@ -146,36 +141,30 @@
             </div>
 
             <div class="col">
-                <h4>About</h4>
-                <a href="#">About us</a>
-                <a href="#">Delivery Information</a>
-                <a href="#">Privacy Policy</a>
-                <a href="#">Terms & Conditions</a>
-                <a href="#">Contact us</a>
+                <h4>điều khoản</h4>
+                <a href="#">Về chúng tôi</a>
+                <a href="#">Thông tin giao hàng</a>
+                <a href="#">Chính sách bảo mật</a>
+                <a href="#">Điều khoản & Điều kiện</a>
+                <a href="#">Liên hệ với chúng tôi</a>
             </div>
 
             <div class="col">
-                <h4>My Account</h4>
-                <a href="#">Sign In</a>
-                <a href="#">View Cart</a>
-                <a href="#">My Wishlist</a>
-                <a href="#">Track My Order</a>
-                <a href="#">Help</a>
+                <h4>Tài khoản của tôi</h4>
+                <a href="#">Đăng nhập</a>
+                <a href="#">Xem giỏ hàng</a>
+                <a href="#">Danh sách mong muốn của tôi</a>
+                <a href="#">Theo dõi đơn hàng của tôi</a>
+                <a href="#">Trợ giúp</a>
             </div>
 
             <div class="col install">
-                <h4>Install App</h4>
-                <p>From App Store or Google Play</p>
+                <h4>Cài đặt ứng dụng</h4>
+                <p>Từ App Store hoặc Google Play</p>
                 <div class="row">
                     <img src="pay/app.png" alt="">
                     <img src="pay/ggplay.png" alt="">
                 </div>
-                <p>Secured Payment Gateways </p>
-                <img src="pay/visa.png" alt="">
-            </div>
-
-            <div class="copyright">
-                <p>Nhóm 8 - Công Nghệ Java - Quản lý giày dép công ty Nam Dương 2024</p>
             </div>
 
         </footer>

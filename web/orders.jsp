@@ -17,12 +17,11 @@
             <table>
                 <tr>
 
-                    <td>Product</td>
+                    <td>Sản phẩm</td>
                     <td>Size</td>
-                    <td>Price</td>
-                    <td>Quantity</td>
-                    <td>Subtotal</td>
-                    <td>payment method</td>
+                    <td>Giá tiền</td>
+                    <td>Số lượng</td>
+                    <td>Tổng tiền</td>
                 </tr>
                 <tr>
 
@@ -31,7 +30,6 @@
                     <td><fmt:formatNumber type="currency" currencyCode="VND" value="${param.price}" /></td>
                     <td>${param.quantity}</td>
                     <td><fmt:formatNumber type="currency" currencyCode="VND" value="${param.subtotal}" /></td>
-                    <td>${param.payment_method}</td>
                 </tr>
             </table>
 
@@ -44,7 +42,6 @@
                 <input type="hidden" name="price" value="${param.price}">
                 <input type="hidden" name="quantity" value="${param.quantity}">
                 <input type="hidden" name="subtotal" value="${param.subtotal}">
-                <input type="hidden" name="payment_method" value="${param.payment_method}">
 
                 <label for="customerName">Tên khách hàng:</label>
                 <input type="text" id="customerName" name="customerName" required><br><br>
@@ -52,8 +49,13 @@
                 <label for="phone">Số điện thoại:</label>
                 <input type="tel" id="phone" name="phone" required pattern="[0-9]{10}"><br><br>
 
-                <label for="address">Địa chỉ:</label><br>
+                <label for="address">Địa chỉ:</label>
                 <textarea id="address" name="address" rows="4" cols="50" required></textarea><br><br>
+                <label for="address">Chọn phương thức thanh toán:</label>
+                <select name="payment_method">
+                    <option value="Tiền mặt">Tiền mặt</option>
+                    <option value="Chuyển khoản">Chuyển khoản</option>
+                </select>
 
                 <button type="submit" id="submitBtn">Đặt hàng</button>
             </form>

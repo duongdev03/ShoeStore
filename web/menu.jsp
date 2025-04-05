@@ -40,7 +40,7 @@
                             <div class="collapse" id="collapseProducts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="listProducts">Danh sách hàng hóa</a>
-                                    <a class="nav-link" href="updateProduct">Sửa thông tin hàng hóa</a>
+<!--                                    <a class="nav-link" href="updateProduct">Sửa thông tin hàng hóa</a>-->
                                 </nav>
                             </div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseWarehouse" aria-expanded="false" aria-controls="collapseWarehouse">
@@ -51,7 +51,7 @@
                             <div class="collapse" id="collapseWarehouse" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="listStockQuantity">Danh sách hàng tồn</a>
-                                    <a class="nav-link" href="updateWarehouse">Sửa thông tin</a>
+<!--                                    <a class="nav-link" href="updateWarehouse">Sửa thông tin</a>-->
                                 </nav>
                             </div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseCategories" aria-expanded="false" aria-controls="collapseCategories">
@@ -62,7 +62,7 @@
                             <div class="collapse" id="collapseCategories" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="listCategories">Danh mục hàng</a>
-                                    <a class="nav-link" href="updateCategory">Sửa danh mục</a>
+<!--                                    <a class="nav-link" href="updateCategory">Sửa danh mục</a>-->
                                 </nav>
                             </div>
                             <a class="nav-link collapsed" href="listCustomers">

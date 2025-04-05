@@ -2,6 +2,7 @@ package dao;
 
 import entity.OrderDetail;
 import connect.DBConnect;
+import entity.UserOrder;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,7 +14,7 @@ public class OrderDetailsDAO {
     // Lấy danh sách chi tiết đơn hàng theo order_id
     public List<OrderDetail> getOrderDetailsByOrderId(int orderId) throws Exception {
         List<OrderDetail> orderDetails = new ArrayList<>();
-        
+
         String sql = """
             SELECT 
                 o.order_id, 
@@ -36,8 +37,7 @@ public class OrderDetailsDAO {
             WHERE o.order_id = ?;
         """;
 
-        try (Connection conn = new DBConnect().getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
+        try (Connection conn = new DBConnect().getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
 
             ps.setInt(1, orderId);
 
@@ -53,7 +53,7 @@ public class OrderDetailsDAO {
                     detail.setOrderDate(rs.getDate("order_date"));
                     detail.setPaymentMethod(rs.getString("payment_method"));
                     detail.setTotalAmount(rs.getDouble("total_amount"));
-                    
+
                     // Thêm vào danh sách chi tiết đơn hàng
                     orderDetails.add(detail);
                 }
@@ -61,4 +61,63 @@ public class OrderDetailsDAO {
         }
         return orderDetails;
     }
+
+    // lấy danh sách đơn hàng theo user_id
+    public List<UserOrder> getUserOrders(int userId) throws Exception {
+        List<UserOrder> orders = new ArrayList<>();
+
+        // Truy vấn thông tin người dùng
+        String userSql = "SELECT username, email FROM Users WHERE user_id = ?";
+
+        // Truy vấn thông tin đơn hàng của user
+        String orderSql = """
+        SELECT 
+            o.order_id,
+            o.order_date,
+            o.status,
+            p.product_name,
+            ps.size,
+            od.quantity,
+            od.unit_price,
+            u.username,
+            u.email,
+            p.image_url
+        FROM Orders o
+        JOIN OrderDetails od ON o.order_id = od.order_id
+        JOIN ProductSizes ps ON od.product_size_id = ps.product_size_id
+        JOIN Products p ON ps.product_id = p.product_id
+        JOIN Customers c ON o.customer_id = c.customer_id
+        JOIN Users u ON c.user_id = u.user_id
+        WHERE u.user_id = ?
+        ORDER BY o.order_date DESC;
+    """;
+
+        try (Connection conn = new DBConnect().getConnection()) {
+            try (PreparedStatement ps = conn.prepareStatement(orderSql)) {
+                ps.setInt(1, userId);
+
+                try (ResultSet rs = ps.executeQuery()) {
+                    while (rs.next()) {
+                        UserOrder order = new UserOrder();
+                        order.setUserId(userId);
+                        order.setUsername(rs.getString("username"));
+                        order.setEmail(rs.getString("email"));
+                        order.setOrderId(rs.getInt("order_id"));
+                        order.setOrderDate(rs.getDate("order_date"));
+                        order.setStatus(rs.getString("status"));
+                        order.setProductName(rs.getString("product_name"));
+                        order.setSize(rs.getString("size"));
+                        order.setQuantity(rs.getInt("quantity"));
+                        order.setUnitPrice(rs.getDouble("unit_price"));
+                        order.setImage_url(rs.getString("image_url"));
+
+                        orders.add(order);
+                    }
+                }
+            }
+        }
+
+        return orders;
+    }
+
 }
