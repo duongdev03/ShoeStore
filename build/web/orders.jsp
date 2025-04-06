@@ -52,16 +52,29 @@
                 <label for="address">Địa chỉ:</label>
                 <textarea id="address" name="address" rows="4" cols="50" required></textarea><br><br>
                 <label for="address">Chọn phương thức thanh toán:</label>
-                <select name="payment_method">
+                <select name="payment_method" id="paymentMethod" required>
+                    <option value="" disabled selected>Chọn phương thức thanh toán</option>
                     <option value="Tiền mặt">Tiền mặt</option>
                     <option value="Chuyển khoản">Chuyển khoản</option>
                 </select>
 
-                <button type="submit" id="submitBtn">Đặt hàng</button>
+                <button type="submit" id="submitBtn" onclick="handleOrder(event)">Đặt hàng</button>
             </form>
-            <p id="confirmation"></p>
         </div>
 
-        <script src="main.js"></script>
+        <script>
+            function handleOrder(event) {
+                const paymentMethod = document.getElementById("paymentMethod").value;
+        
+                if (paymentMethod === "Chuyển khoản") {
+                    // Điều hướng đến trang xử lý thanh toán
+                    event.preventDefault(); // Ngăn chặn gửi form mặc định
+                    window.location.href = "payment.jsp";
+                } else {
+                    // Gửi form nếu chọn "Tiền mặt"
+                    document.getElementById("orderForm").submit();
+                }
+            }
+        </script>
     </body>
 </html>
