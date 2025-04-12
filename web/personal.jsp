@@ -25,7 +25,15 @@
 
                 <section id="header">
                     <a href="#"><img src="logo/LogoStore.png" class="logo" alt=""></a>
-
+                    <div id="search-bar">
+                        <form action="search" method="get" class="d-flex">
+                            <input type="text" name="query" class="form-control" placeholder="Tìm kiếm sản phẩm..."
+                                required>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="bi bi-search"></i>
+                            </button>
+                        </form>        
+                    </div>
                     <div>
                         <ul id="navbar">
                             <li><a href="shop">Trang chủ</a></li>
@@ -63,10 +71,7 @@
                                         </div>
 
                                         <c:if test="${order.status eq 'Hủy' || order.status eq 'Đã giao'}">
-                                            <form action="reOrder" method="post">
-                                                <input type="hidden" name="orderId" value="${order.orderId}" />
-                                                <button type="submit" class="re-order">Mua lại</button>
-                                            </form>
+                                                <a class="re-order" href="detail?pid=${order.productId}">Mua lại</a>
                                         </c:if>
                                         <c:if test="${order.status ne 'Hủy' && order.status ne 'Đã giao'}">                                         
                                                 <button type="submit" class="cancel-order" data-bs-toggle="modal" data-bs-target="#cancelOrderModal" onclick="setOrderId('${order.orderId}')">Hủy</button>
@@ -147,10 +152,9 @@
                                     <label for="cancelReason">Chọn lý do hủy:</label>
                                     <select name="cancelReason" id="cancelReason" class="form-select" required>
                                         <option value="" disabled selected>Chọn lý do</option>
-                                        <option value="Đổi ý">Đổi ý</option>
-                                        <option value="Thời gian giao hàng lâu">Thời gian giao hàng lâu</option>
-                                        <option value="Sản phẩm không còn cần thiết">Sản phẩm không còn cần thiết
-                                        </option>
+                                        <option value="Thay đổi size">Thay đổi size</option>
+                                        <option value="Đổi phương thức thanh toán">Đổi phương thức thanh toán</option>
+                                        <option value="Sản phẩm không còn cần thiết">Sản phẩm không còn cần thiết</option>
                                         <option value="Lý do khác">Lý do khác</option>
                                     </select>
                                 </form>

@@ -72,37 +72,78 @@ public class ReportDAO {
     }
 
     public String getBestSellingProduct() {
-        String productName = null;
+        String result = null;
         String query = """                       
-                        select 
-                            p.product_name
-                        from 
+                        SELECT 
+                            p.product_name,
+                            SUM(od.quantity) AS total_sold
+                        FROM 
                             Orders o
-                        join 
-                            Orderdetails od on o.order_id = od.order_id
-                        join 
-                            ProductSizes ps on od.product_size_id = ps.product_size_id
-                        join 
-                            Products p on ps.product_id = p.product_id
-                        where 
+                        JOIN 
+                            Orderdetails od ON o.order_id = od.order_id
+                        JOIN 
+                            ProductSizes ps ON od.product_size_id = ps.product_size_id
+                        JOIN 
+                            Products p ON ps.product_id = p.product_id
+                        WHERE 
                             o.status = 'đã giao'
                         GROUP BY 
                             p.product_id
                         ORDER BY 
-                            SUM(od.quantity) DESC
-                        LIMIT 1
-                           """;
+                            total_sold DESC
+                        LIMIT 1;
+                    """;
         try {
             conn = new DBConnect().getConnection();
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             if (rs.next()) {
-                productName = rs.getString("product_name");
+                String productName = rs.getString("product_name");
+                int soldQuantity = rs.getInt("total_sold");
+                result = productName + " (Số lượng đã bán: " + soldQuantity + ")";
             }
         } catch (Exception e) {
         }
 
-        return productName;
+        return result;
+    }
+
+    // Lấy ra tên và số lượng sản phẩm đã bán chậm nhất
+    public String getLeastSellingProduct() {
+        String result = null;
+        String query = """
+                        SELECT 
+                            p.product_name,
+                            SUM(od.quantity) AS total_sold
+                        FROM 
+                            Orders o
+                        JOIN 
+                            Orderdetails od ON o.order_id = od.order_id
+                        JOIN 
+                            ProductSizes ps ON od.product_size_id = ps.product_size_id
+                        JOIN 
+                            Products p ON ps.product_id = p.product_id
+                        WHERE 
+                            o.status = 'đã giao'
+                        GROUP BY 
+                            p.product_id
+                        ORDER BY 
+                            total_sold ASC
+                        LIMIT 1;
+                    """;
+        try {
+            conn = new DBConnect().getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                String productName = rs.getString("product_name");
+                int soldQuantity = rs.getInt("total_sold");
+                result = productName + " (Số lượng đã bán: " + soldQuantity + ")";
+            }
+        } catch (Exception e) {
+        }
+
+        return result;
     }
 
     public int getCancelledOrdersCount() {

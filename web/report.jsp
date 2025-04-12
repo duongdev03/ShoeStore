@@ -52,6 +52,14 @@
                                 <div class="card-body">${cancelledOrdersCount}</div>                               
                             </div>
                         </div>
+                        <div class="col-xl-6">
+                            <div class="card bg-warning text-white mb-4">
+                                <div class="card-header">
+                                    Sản phẩm bán chậm nhất
+                                </div>
+                                <div class="card-body">${leastSellingProduct}</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="container-fluid px-4">   

@@ -32,8 +32,13 @@ public class reportControll extends HttpServlet {
         NumberFormat currencyFormatter = DecimalFormat.getCurrencyInstance(locale);
         String formattedRevenue = currencyFormatter.format(revenue);
 
-        // Lấy tên sản phẩm bán chạy nhất
+        // Lấy tên và số lượng hàng đã bán của sản phẩm bán chạy nhất
         String bestSellingProduct = reportDAO.getBestSellingProduct();
+        
+        // Lấy tên và số lượng hàng đã bán của sản phẩm bán chậm nhất
+        String leastSellingProduct = reportDAO.getLeastSellingProduct();
+
+        // Lấy số lượng đơn hàng đã hủy
         int cancelledOrdersCount = reportDAO.getCancelledOrdersCount();
         
         ReportDAO dao = new ReportDAO();
@@ -42,6 +47,7 @@ public class reportControll extends HttpServlet {
         request.setAttribute("monthlyRevenueList", monthlyRevenueList);
         request.setAttribute("revenue", formattedRevenue);
         request.setAttribute("bestSellingProduct", bestSellingProduct);
+        request.setAttribute("leastSellingProduct", leastSellingProduct);
         request.setAttribute("cancelledOrdersCount", cancelledOrdersCount);
 
         request.getRequestDispatcher("report.jsp").forward(request, response);

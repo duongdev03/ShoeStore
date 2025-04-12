@@ -76,6 +76,7 @@ public class OrderDetailsDAO {
             o.order_date,
             o.status,
             p.product_name,
+            p.product_id,
             ps.size,
             od.quantity,
             od.unit_price,
@@ -105,6 +106,7 @@ public class OrderDetailsDAO {
                         order.setOrderId(rs.getInt("order_id"));
                         order.setOrderDate(rs.getDate("order_date"));
                         order.setStatus(rs.getString("status"));
+                        order.setProductId(rs.getString("product_id"));
                         order.setProductName(rs.getString("product_name"));
                         order.setSize(rs.getString("size"));
                         order.setQuantity(rs.getInt("quantity"));

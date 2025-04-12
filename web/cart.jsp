@@ -24,7 +24,15 @@
     <body>
         <section id="header">
             <a href="#"><img src="logo/LogoStore.png" class="logo" alt=""></a>
-
+            <div id="search-bar">
+                <form action="search" method="get" class="d-flex">
+                    <input type="text" name="query" class="form-control" placeholder="Tìm kiếm sản phẩm..."
+                        required>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-search"></i>
+                    </button>
+                </form>        
+            </div>
             <div>
                 <ul id="navbar">
                     <li><a href="shop">Trang chủ</a></li>

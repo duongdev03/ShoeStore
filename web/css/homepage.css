@@ -817,4 +817,37 @@ footer .copyright {
     color: #fff;
 }
 
+/* Search */
+#search-bar {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 20px;
+}
 
+#search-bar form {
+    display: flex;
+    width: 100%;
+    max-width: 500px;
+}
+
+#search-bar input {
+    flex-grow: 1;
+    border-radius: 5px 0 0 5px;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+}
+
+#search-bar button {
+    border-radius: 0 5px 5px 0;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    padding: 5px 15px;
+    cursor: pointer;
+}
+
+#search-bar button:hover {
+    background-color: #0056b3;
+}

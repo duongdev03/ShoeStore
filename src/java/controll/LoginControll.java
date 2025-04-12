@@ -19,6 +19,14 @@ public class LoginControll extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String username = request.getParameter("username");
         String password = request.getParameter("password");
+
+        // Kiểm tra nếu username hoặc password chưa được nhập
+        if (username == null || password == null || username.isEmpty() || password.isEmpty()) {
+        // Chuyển hướng đến trang đăng nhập mà không hiển thị thông báo lỗi
+            request.getRequestDispatcher("login.jsp").forward(request, response);
+            return;
+        }
+
         ProductsDAO dao = new ProductsDAO();
         Users a = dao.login(username, password);
         if (a == null) {

@@ -11,6 +11,7 @@ public class UserOrder {
     private int orderId;
     private Date orderDate;
     private String status;
+    private String productId;
     private String productName;
     private String size;
     private int quantity;
@@ -19,13 +20,14 @@ public class UserOrder {
 
     public UserOrder() {}
 
-    public UserOrder(int userId, String username, String email, int orderId, Date orderDate, String status, String productName, String size, int quantity, double unitPrice, String image_url) {
+    public UserOrder(int userId, String username, String email, int orderId, Date orderDate, String status, String productId, String productName, String size, int quantity, double unitPrice, String image_url) {
         this.userId = userId;
         this.username = username;
         this.email = email;
         this.orderId = orderId;
         this.orderDate = orderDate;
         this.status = status;
+        this.productId = productId;
         this.productName = productName;
         this.size = size;
         this.quantity = quantity;
@@ -81,6 +83,14 @@ public class UserOrder {
         this.status = status;
     }
 
+    public String getProductId() {
+        return productId;
+    }
+
+    public void setProductId(String productId) {
+        this.productId = productId;
+    }
+
     public String getProductName() {
         return productName;
     }
@@ -123,8 +133,8 @@ public class UserOrder {
 
     @Override
     public String toString() {
-        return "UserOrder{" + "userId=" + userId + ", username=" + username + ", email=" + email + ", orderId=" + orderId + ", orderDate=" + orderDate + ", status=" + status + ", productName=" + productName + ", size=" + size + ", quantity=" + quantity + ", unitPrice=" + unitPrice + ", image_url=" + image_url + '}';
+        return "UserOrder{" + "userId=" + userId + ", username=" + username + ", email=" + email + ", orderId=" + orderId + ", orderDate=" + orderDate + ", status=" + status + ", productId=" + productId + ", productName=" + productName + ", size=" + size + ", quantity=" + quantity + ", unitPrice=" + unitPrice + ", image_url=" + image_url + '}';
     }
-    
+
    
 }
