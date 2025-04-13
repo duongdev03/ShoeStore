@@ -34,7 +34,7 @@
             </table>
 
             <h3>Thông tin khách hàng</h3>
-            <form id="orderForm" action="processOrder.jsp" method="post">
+            <form id="orderForm" action="processOrder" method="post">
                 <input type="hidden" name="product_name" value="${param.product_name}">
                 <input type="hidden" name="image_url" value="${param.image_url}">
                 <input type="hidden" name="size" value="${param.size}">
