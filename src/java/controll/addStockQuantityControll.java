@@ -26,7 +26,7 @@ public class addStockQuantityControll extends HttpServlet {
         
         ProductsizesDAO dao = new ProductsizesDAO();
         dao.addStockQuantity(pID, pSize, stockQuantity);
-        response.sendRedirect("listStockQuantity");
+        response.sendRedirect("listStockQuantity?message=addStockSuccess");
 
     }
 

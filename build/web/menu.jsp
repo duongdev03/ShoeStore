@@ -26,7 +26,7 @@
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
                         <div class="nav">
-                            <div class="sb-sidenav-menu-heading">Core</div>
+                            <div class="sb-sidenav-menu-heading">Điều khiển</div>
                             <a class="nav-link" href="dashboad">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard
@@ -114,11 +114,7 @@
                                     </div>
                                 </nav>
                             </div>
-                            <div class="sb-sidenav-menu-heading">Addons</div>
-                            <a class="nav-link" href="charts.jsp">
-                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                                Charts
-                            </a>
+                            <div class="sb-sidenav-menu-heading">Báo cáo</div>
                             <a class="nav-link" href="report">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-chart-simple"></i></div>
                                 Thống kê báo cáo

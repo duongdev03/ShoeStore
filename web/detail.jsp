@@ -29,7 +29,7 @@
                             <button type="submit" class="btn btn-primary">
                                 <i class="bi bi-search"></i>
                             </button>
-                        </form>        
+                        </form>
                     </div>
                     <div>
                         <ul id="navbar">
@@ -68,7 +68,8 @@
                                     <c:forEach var="size" items="${sizes}">
                                         <c:choose>
                                             <c:when test="${size.stock_quantity > 0}">
-                                                <option value="${size.size}" data-size-id="${size.product_size_id}">
+                                                <option value="${size.size}" data-size-id="${size.product_size_id}"
+                                                    data-stock="${size.stock_quantity}">
                                                     ${size.size}</option>
                                             </c:when>
                                             <c:otherwise>
@@ -82,8 +83,16 @@
                                 <input type="hidden" name="product_name" value="${detail.product_name}">
                                 <input type="hidden" name="price" value="${detail.price}">
                                 <input type="hidden" name="image_url" value="${detail.image_url}">
-                                <input type="number" name="quantity" value="1">
-                                <button type="submit" class="normal" onclick="return validateSize()">Mua</button>
+                                <div class="quantity" style="display: flex; align-items: center; margin-bottom: 10px;">
+                                    <p style="margin-bottom: 0;">Chọn số lượng:</p>
+                                    <input type="number" name="quantity" value="1" min="1"
+                                        style="width: 50px; height: 40px; margin-left: 10px;">
+                                    <p id="stockInfo" style="margin-bottom: 0; margin-left: 20px; opacity: 0.7;">
+                                        ${totalStock} sản phẩm sẵn có
+                                    </p>
+                                </div>
+                                <button style="width: 150px;" type="submit" class="normal"
+                                    onclick="return validateSize()">Mua</button>
                             </form>
                         </c:if>
                         <c:if test="${sessionScope.acc == null}">
@@ -107,7 +116,6 @@
                         <button class="normal">Đăng ký</button>
                     </div>
                 </section>
-
 
                 <footer class="section-p1">
                     <div class="col">
@@ -164,7 +172,21 @@
                         var sizeSelect = document.getElementById('sizeSelect');
                         var selectedOption = sizeSelect.options[sizeSelect.selectedIndex];
                         var productSizeId = selectedOption.getAttribute('data-size-id');
+                        var stockQuantity = selectedOption.getAttribute('data-stock');
                         document.getElementById('product_size_id').value = productSizeId;
+                        // Cập nhật số lượng còn lại hiển thị
+                        var stockInfo = document.getElementById('stockInfo');
+                        if (stockQuantity) {
+                            stockInfo.textContent = stockQuantity + " sản phẩm sẵn có";
+                        } 
+
+                        // Giới hạn input số lượng không vượt quá stock
+                        var quantityInput = document.querySelector('input[name="quantity"]');
+                        if (stockQuantity) {
+                            quantityInput.max = stockQuantity;
+                        } else {
+                            quantityInput.removeAttribute('max');
+                        }
                     }
 
                     function validateSize() {

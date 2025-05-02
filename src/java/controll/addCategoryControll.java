@@ -20,7 +20,7 @@ public class addCategoryControll extends HttpServlet {
         
         CategoriesDAO dao = new CategoriesDAO();
         dao.addCategory(Cname);
-        response.sendRedirect("listCategories");
+        response.sendRedirect("listCategories?message=addCategorySuccess");
     }
 
 

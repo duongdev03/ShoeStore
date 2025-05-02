@@ -21,6 +21,11 @@
     transition: transform 0.2s;
 }
 
+#products .card img {
+    width: 100%;
+    height: 250px;
+}
+
 #products .card:hover {
     transform: scale(1.05);
 }

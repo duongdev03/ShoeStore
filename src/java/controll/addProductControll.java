@@ -37,7 +37,9 @@ public class addProductControll extends HttpServlet {
         
         ProductsDAO dao = new ProductsDAO();
         dao.addProduct(pName, pDescription, pPrice, newFileName, pCategory_id);
-        response.sendRedirect("listProducts");
+        request.getSession().setAttribute("addSuccess", "Thêm sản phẩm thành công!");
+        response.sendRedirect("listProducts?message=addProductSuccess");
+
     }
 
 

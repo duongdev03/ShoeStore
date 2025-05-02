@@ -38,7 +38,7 @@ public class addAccountControll extends HttpServlet {
         
         UsersDAO dao = new UsersDAO();
         dao.addAccount(username, pass, email, role);
-        response.sendRedirect("listAccountAdmin");
+        response.sendRedirect("listAccountAdmin?message=addAccountSuccess");
     }
 
     @Override

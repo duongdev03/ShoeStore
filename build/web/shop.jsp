@@ -24,7 +24,7 @@
 
                 <section id="header">
                     <a href="#"><img src="logo/LogoStore.png" class="logo" alt=""></a>
-                    
+
                     <div id="search-bar">
                         <form action="search" method="get" class="d-flex">
                             <input type="text" name="query" class="form-control" placeholder="Tìm kiếm sản phẩm..."
@@ -32,7 +32,7 @@
                             <button type="submit" class="btn btn-primary">
                                 <i class="bi bi-search"></i>
                             </button>
-                        </form>        
+                        </form>
                     </div>
 
                     <div>
@@ -51,8 +51,43 @@
 
                 </section>
 
-                <section id="page-header" style="background-image: url(image/banner/b2.jpg)">
-                    <p>Save more with coupons & up to 70% off! </p>
+                <section id="page-header">
+                    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                        <!-- Indicators (dấu chấm chuyển ảnh) -->
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
+                                class="active" aria-current="true" aria-label="Slide 1"></button>
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                                aria-label="Slide 2"></button>
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                                aria-label="Slide 3"></button>
+                        </div>
+
+                        <!-- Các ảnh trong slider -->
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="image/slider/slider6.png" class="d-block w-100" alt="Banner 1">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="image/slider/slider5.png" class="d-block w-100" alt="Banner 2">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="image/slider/slider4.png" class="d-block w-100" alt="Banner 3">
+                            </div>
+                        </div>
+
+                        <!-- Nút điều hướng -->
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
                 </section>
 
                 <section id="product1" class="section-p1">
