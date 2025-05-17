@@ -75,7 +75,7 @@ public class ProcessOrderControll extends HttpServlet {
             Orders order = new Orders();
             order.setOrder_date(orderDate);
             order.setTotal_amount(subtotal);
-            order.setStatus("Đang xử lý");
+            order.setStatus(paymentMethod.equals("Chuyển khoản") ? "Chờ thanh toán" : "Đang xử lý");
 
             // Tạo đối tượng thanh toán
             payments payment = new payments();
@@ -95,7 +95,18 @@ public class ProcessOrderControll extends HttpServlet {
             ProcessOrderDAO processOrderDAO = new ProcessOrderDAO();
             int orderId = processOrderDAO.insertFullOrder(customer, order, payment, details);
 
-            request.getRequestDispatcher("orderSuccess.jsp").forward(request, response);
+            // Lưu orderId vào session để sử dụng trong payment.jsp
+            session.setAttribute("orderId", orderId);
+            session.setAttribute("subtotal", subtotal);
+
+
+            // Nếu thanh toán bằng chuyển khoản, điều hướng đến trang thanh toán
+            if (paymentMethod.equals("Chuyển khoản")) {
+                response.sendRedirect("payment?orderId=" + orderId);
+            } else {
+                response.sendRedirect("orderSuccess.jsp");
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }

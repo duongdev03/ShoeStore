@@ -100,4 +100,20 @@ public class ProcessOrderDAO {
             if (conn != null) conn.close();
         }
     }
+    public void updateOrderStatus(int orderId, String status) throws SQLException, Exception {
+        Connection conn = null;
+        PreparedStatement ps = null;
+
+        try {
+            conn = new DBConnect().getConnection();
+            String sql = "UPDATE orders SET status = ? WHERE order_id = ?";
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, status);
+            ps.setInt(2, orderId);
+            ps.executeUpdate();
+        } finally {
+            if (ps != null) ps.close();
+            if (conn != null) conn.close();
+        }
+    }
 }
