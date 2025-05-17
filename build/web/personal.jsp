@@ -64,18 +64,25 @@
                                 <div class="product-content">
                                     <p>${order.productName}</p>
                                     <p>size: ${order.size}, số lượng: ${order.quantity}</p>
+                                    <p>Giá: <fmt:formatNumber type="currency" currencyCode="VND"
+                                            value="${order.unitPrice}" /></p>
 
                                     <div class="invoice-status">
                                         <div class="status">
                                             <span style="opacity: 0.7;">Trạng thái: </span>${order.status}
                                         </div>
 
-                                        <c:if test="${order.status eq 'Hủy' || order.status eq 'Đã giao'}">
+                                        <div class="action">
+                                            <c:if test="${order.status eq 'Hủy' || order.status eq 'Đã giao'}">
                                                 <a class="re-order" href="detail?pid=${order.productId}">Mua lại</a>
-                                        </c:if>
-                                        <c:if test="${order.status ne 'Hủy' && order.status ne 'Đã giao'}">                                         
+                                            </c:if>
+                                            <c:if test="${order.status eq 'Chờ thanh toán'}">
+                                                <a class="payment-order" href="payment?orderId=${order.orderId}">Thanh toán đơn hàng</a>
+                                            </c:if>
+                                            <c:if test="${order.status ne 'Hủy' && order.status ne 'Đã giao'}">                                         
                                                 <button type="submit" class="cancel-order" data-bs-toggle="modal" data-bs-target="#cancelOrderModal" onclick="setOrderId('${order.orderId}')">Hủy</button>
-                                        </c:if>
+                                            </c:if>
+                                        </div>
 
                                     </div>
                                 </div>

@@ -41,7 +41,7 @@ public class CheckPaymentControll extends HttpServlet {
         double subtotal = Double.parseDouble(request.getParameter("subtotal"));
 
         try {
-            String apiUrl = "https://script.googleusercontent.com/macros/echo?user_content_key=AehSKLg7skKVMfqMvwmZo3A6MSA4GM1_9VOFHQRalxFdHtB6bzRLwrfBt7MsVWN19vGRvFoM4Zc2zOwWqhX8cCSHPjzyp0jH0p5qylRnHGw0kHXdy4yqS5r_hKtzm-91tyeB9gzauNMacLCey6uokBQPKdU3Cz_XR5raT4E_kZtvIy-qNY8zVnRY92i_UjFLATBEb59hDEqifD10Ef3Fy8OMVUK5zN8V-kSeiTMw75wznfVi6bvGydcwSfs3MJOnVMVvCafJWi_0on8uO0kQdytPfCG31CI5T4oaS8xPH9ON&lib=M-rhriyYSnocd51AR1YkXKsbJknALTpkX";
+            String apiUrl = "https://script.google.com/macros/s/AKfycbxOLzjYiLmhZqceEDAR_5Z6bQD6pkwJzrkxlBSLXGMTKL-Vx0zUgD82-gOF0BJQffPN/exec";
             URL url = new URL(apiUrl);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
