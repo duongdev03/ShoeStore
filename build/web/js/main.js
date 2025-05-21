@@ -13,3 +13,15 @@ if (close) {
         nav.classList.remove('active');
     })
 }
+
+const menuToggle = document.getElementById('menu-toggle');
+const navbar = document.getElementById('navbar');
+menuToggle.addEventListener('click', function () {
+    navbar.classList.toggle('show');
+});
+// Đóng menu khi click ra ngoài (tùy chọn)
+document.addEventListener('click', function (e) {
+    if (!navbar.contains(e.target) && !menuToggle.contains(e.target)) {
+        navbar.classList.remove('show');
+    }
+});

@@ -43,6 +43,10 @@
                             </c:if>
                             <li id="lg-bag"><a href="cart"><i class="bi bi-cart4"></i></a></li>
                         </ul>
+
+                        <button id="menu-toggle" class="menu-icon" aria-label="Mở menu">
+                            <i class="bi bi-list"></i>
+                        </button>
                     </div>
                 </section>
 

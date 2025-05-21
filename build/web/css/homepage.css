@@ -11,9 +11,10 @@
     top: 0;
     left: 0;
 }
+
 #header img {
-     width: 70px;
-     height: auto;
+    width: 70px;
+    height: auto;
 }
 
 #navbar {
@@ -21,11 +22,13 @@
     align-items: center;
     justify-content: center;
 }
+
 #navbar li {
     list-style: none;
     padding: 0 20px;
     position: relative;
 }
+
 #navbar li a {
     text-decoration: none;
     font-size: 16px;
@@ -33,12 +36,13 @@
     color: #1a1a1a;
     transition: 0.3s ease;
 }
+
 #navbar li a:hover,
 #navbar li a.active {
     color: #088178;
 }
-#navbar li a.active::after,
-#navbar li a:hover::after {
+
+#navbar li a.active::after{
     content: "";
     width: 30%;
     height: 2px;
@@ -71,9 +75,10 @@
     margin: 15px 0;
 }
 
-#feature .fe-box:hover{
+#feature .fe-box:hover {
     box-shadow: 10px 10px 54px rgba(70, 62, 221, 0.1);
 }
+
 #feature .fe-box img {
     width: 100%;
     margin-bottom: 10px;
@@ -112,7 +117,7 @@
     text-align: center;
 }
 
-#product1 .pro-container{
+#product1 .pro-container {
     display: flex;
     justify-content: space-between;
     padding-top: 20px;
@@ -124,7 +129,7 @@
     width: 23%;
     min-width: 250px;
     padding: 10px 12px;
-    border:  1px solid #cce7d0;
+    border: 1px solid #cce7d0;
     border-radius: 25px;
     box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.02);
     margin: 15px 0;
@@ -178,7 +183,8 @@
     font-weight: 500;
     color: #088178;
     border: 1px solid #cce7d0;
-    position: absolute; /* product1 .pro*/
+    position: absolute;
+    /* product1 .pro*/
     bottom: 20px;
     right: 10px;
 }
@@ -348,19 +354,19 @@ button.white {
     background-color: #041e42;
 }
 
-#newsletter h4{
+#newsletter h4 {
     font-size: 22px;
     font-weight: 700;
     color: #fff;
 }
 
-#newsletter p{
+#newsletter p {
     font-size: 14px;
     font-weight: 600;
     color: #353c45;
 }
 
-#newsletter p span{
+#newsletter p span {
     color: #fcba21;
 }
 
@@ -472,7 +478,7 @@ footer .copyright {
         margin: 15px 15px;
     }
 
-    #product1 .pro-container{
+    #product1 .pro-container {
         justify-content: center;
     }
 
@@ -494,11 +500,20 @@ footer .copyright {
     }
 
     #banner3 .banner-box {
-    width: 28%;
+        width: 28%;
     }
 
     #newsletter .form {
         width: 70%;
+    }
+
+    #page-header {
+        height: 40vw;
+        max-height: 350px;
+    }
+
+    .carousel-inner img {
+        max-height: 40vw;
     }
 }
 
@@ -509,6 +524,15 @@ footer .copyright {
 
     #header {
         padding: 10px 30px;
+    }
+
+    #page-header {
+        height: 30vw;
+        max-height: 200px;
+    }
+
+    .carousel-inner img {
+        max-height: 30vw;
     }
 
     h1 {
@@ -563,6 +587,7 @@ footer .copyright {
     footer .copyright {
         text-align: start;
     }
+
     /* Single Product */
     #prodetails {
         display: flex;
@@ -577,6 +602,7 @@ footer .copyright {
     #prodetails .single-pro-details {
         width: 100%;
     }
+
     /*Cart Page */
     #cart-add {
         flex-direction: column;
@@ -585,7 +611,7 @@ footer .copyright {
     #coupon {
         width: 100%;
     }
-    
+
     #subtotal {
         width: 100%;
         padding: 20px;
@@ -594,16 +620,24 @@ footer .copyright {
 
 /* Shop page */
 #page-header {
-    height: 550px;
-    width: 1000px;
+    height: 55vw;
+    max-height: 550px;
+    width: 100%;
+    max-width: 1000px;
     margin-top: 20px;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 60px;
+    position: relative;
 }
 
 #page-header .carousel-inner img {
-    height: 550px;
-    object-fit:fill;
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
 }
 
 .carousel-control-prev-icon:hover,
@@ -708,6 +742,7 @@ footer .copyright {
     overflow-x: auto;
 
 }
+
 #cart table {
     width: 100%;
     border-collapse: collapse;
@@ -804,6 +839,7 @@ footer .copyright {
     border: 1px solid #e2e9e1;
     padding: 30px;
 }
+
 #subtotal table {
     border-collapse: collapse;
     width: 100%;
@@ -819,7 +855,7 @@ footer .copyright {
 
 .btn-proceed a {
     color: #fff;
-    text-decoration: none; 
+    text-decoration: none;
 }
 
 .btn-proceed a:hover {
@@ -859,4 +895,45 @@ footer .copyright {
 
 #search-bar button:hover {
     background-color: #0056b3;
+}
+
+/* Ẩn nút menu trên desktop */
+.menu-icon {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: #222;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+/* Responsive: Hiện icon menu, ẩn navbar khi mobile */
+@media (max-width: 799px) {
+    #navbar {
+        display: none;
+        flex-direction: column;
+        background: #fff;
+        position: absolute;
+        top: 70px;
+        right: 20px;
+        width: 180px;
+        box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+        border-radius: 8px;
+        z-index: 1000;
+        padding: 10px 0;
+    }
+    #navbar.show {
+        display: flex;
+    }
+    .menu-icon {
+        display: block;
+    }
+    #header {
+        position: relative;
+    }
+    #navbar li {
+        padding: 10px 20px;
+        text-align: left;
+    }
 }
